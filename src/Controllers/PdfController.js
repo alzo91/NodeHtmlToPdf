@@ -1,6 +1,6 @@
-import hmtlPdf from "html-pdf";
-import { resolve } from "path";
-const ejs = require("ejs");
+import hmtlPdf from 'html-pdf';
+import { resolve } from 'path';
+const ejs = require('ejs');
 
 class PdfController {
   async store(req, res) {
@@ -8,7 +8,7 @@ class PdfController {
     const { name } = req.query;
     const date = new Date();
 
-    const directory = resolve(__dirname, "..", "..", "tmp", "pdf");
+    const directory = resolve(__dirname, '..', '..', 'tmp', 'pdf');
     const fileName = `${directory}/${date.getDay()}-${date.getMilliseconds()}-${name}.pdf`;
 
     console.log(fileName);
@@ -16,44 +16,44 @@ class PdfController {
     const itens = [
       {
         id: 0,
-        descr: "Lisador",
-        information: "tomar sempre que sentir dor de cabeca",
-        qtd: "1cx",
+        descr: 'Lisador',
+        information: 'tomar sempre que sentir dor de cabeca',
+        qtd: '1cx',
       },
       {
         id: 1,
-        descr: "Enxak",
-        information: "tomar 1 ao dia",
-        qtd: "2cx",
+        descr: 'Enxak',
+        information: 'tomar 1 ao dia',
+        qtd: '2cx',
       },
       {
         id: 2,
-        descr: "Cefalium",
-        information: "tomar 3x ao dia se estiver com dores na cabeca forte",
-        qtd: "3cx",
+        descr: 'Cefalium',
+        information: 'tomar 3x ao dia se estiver com dores na cabeca forte',
+        qtd: '3cx',
       },
     ];
 
     // <!-- variables title, patient, -->
     // <!-- doctorName, crm, doctorState, hospitalName,address,city, neighboor, state, phone, emission -->
     const objTemplate = {
-      title: "Receituario simple",
+      title: 'Receituario simple',
       patient: name,
-      doctorName: "Doctor Chat is name of doctor",
+      doctorName: 'Doctor Chat is name of doctor',
       crm: 123456,
-      doctorState: "SP",
-      hospitalName: "VERA CRUZ",
-      cnes: "6436366",
-      address: "Centro de campinas 13 de agosto",
-      neighboor: "Centro",
-      city: "Campinas",
-      state: "SP",
-      phone: "(19) 3232=000",
-      emission: "11/05/2020",
+      doctorState: 'SP',
+      hospitalName: 'VERA CRUZ',
+      cnes: '6436366',
+      address: 'Centro de campinas 13 de agosto',
+      neighboor: 'Centro',
+      city: 'Campinas',
+      state: 'SP',
+      phone: '(19) 3232=000',
+      emission: '11/05/2020',
       itens,
-      version: "2.0",
-      month: "Maio",
-      year: "2020",
+      version: '2.0',
+      month: 'Maio',
+      year: '2020',
     };
 
     // console.log(objTemplate);
@@ -68,24 +68,24 @@ class PdfController {
           return res.status(400).json({ error });
         }
         console.log(success);
-        console.log("----------");
+        console.log('----------');
 
         hmtlPdf
           .create(success, {
-            orientation: "portrait",
-            format: "A4",
-            type: "pdf",
+            orientation: 'portrait',
+            format: 'A4',
+            type: 'pdf',
           })
 
           .toFile(`${fileName}`, (err, resp) => {
             if (!!error) {
               console.log(error);
-              res.status(401).json({ msg: "Pdf was not created" });
+              res.status(401).json({ msg: 'Pdf was not created' });
             }
             if (resp) {
               res
                 .status(200)
-                .json({ error, err, html: success, msg: "Pdf was created" });
+                .json({ error, err, html: success, msg: 'Pdf was created' });
             }
           });
         //res.status(200).json({ teste: success, error });

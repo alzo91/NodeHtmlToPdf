@@ -1,5 +1,8 @@
 /node_modules
+/dist
 /tmp/pdf/*.pdf
+/tmp/json/*.json
+/tmp/text/*json
 
 .DS_Store
 
