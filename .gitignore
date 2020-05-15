@@ -2,7 +2,7 @@
 /dist
 /tmp/pdf/*.pdf
 /tmp/json/*.json
-/tmp/text/*json
+/tmp/text/*txt
 
 .DS_Store
 
