@@ -1,4 +1,5 @@
 /node_modules
+/tmp/pdf/*.pdf
 
 .DS_Store
 
